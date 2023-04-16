@@ -8,7 +8,7 @@ import axios from 'axios';
 import {useNavigation} from '@react-navigation/native';
 
 const UpdateProfile = () => {
-  const [profile, setProfile] = useState({});
+  const [profile, setProfile] = useState<any>({});
   const user: any = useContext(UserContext);
   const navigation = useNavigation();
 
@@ -28,6 +28,13 @@ const UpdateProfile = () => {
       .then(function (response) {
         if (response.data.status == 0) {
           navigation.navigate('Profile');
+          user.setUser({
+            email:user.user.email,
+            token:user.user.token,
+            first_name: profile.first_name,
+            last_name: profile.last_name,
+            fetchData: user.user.fetchData ? !user.user.fetchData : true,
+          });
         }
       })
       .catch(function (error) {
@@ -37,7 +44,7 @@ const UpdateProfile = () => {
   return (
     <View style={styles.background}>
       <View style={styles.page}>
-        <TitleHeader title="Update Profile" backButton={true}/>
+        <TitleHeader title="Update Profile" backButton={true} />
         <View style={styles.container}>
           <View style={styles.wrapperInput}>
             <TextInput
@@ -61,10 +68,7 @@ const UpdateProfile = () => {
           <Gap />
         </View>
         <View style={{marginTop: 20}}>
-          <Button
-            onPress={onSubmit}
-            textButton="Update Profile"
-          />
+          <Button onPress={onSubmit} textButton="Update Profile" />
         </View>
       </View>
     </View>

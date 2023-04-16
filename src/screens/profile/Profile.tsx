@@ -24,7 +24,7 @@ const Profile = () => {
   useEffect(() => {
     let contextData = user.user;
     getProfile(contextData.token);
-  }, []);
+  }, [user]);
 
   const getProfile = (token: string) => {
     axios

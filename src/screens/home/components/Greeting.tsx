@@ -18,7 +18,7 @@ const Greeting = () => {
     }else{
         setTime('Good Night');
     }
-  });
+  },[user]);
   return (
     <View style={styles.welcome}>
       <View style={styles.logoContainer}>

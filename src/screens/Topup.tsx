@@ -39,7 +39,7 @@ const Topup = () => {
       .then(function (response) {
         if (response.data.status == 0) {
           navigation.navigate('Dashboard');
-          forceUpdate();
+          user.setUser({...user.user,fetchData:user.user.fetchData? !user.user.fetchData : true});
         }
       })
       .catch(function (error) {

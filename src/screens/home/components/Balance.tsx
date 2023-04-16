@@ -17,7 +17,6 @@ const Balance = () => {
   const navigation = useNavigation();
   const [balance, setBalance] = useState({balance: 0});
   const user: any = useContext(UserContext);
-  const [updateState, setUpdateState] = useState({});
 
   const getBalance = (token: string) => {
     axios
@@ -39,8 +38,9 @@ const Balance = () => {
 
   useEffect(() => {
     let contextData = user.user;
+    console.log('context',user.user);
     getBalance(contextData.token);
-  },[updateState]);
+  },[user]);
 
 
   return (
